@@ -6,6 +6,10 @@ if [ -e CooConverter ]; then :
 else
         mkdir CooConverter
 fi
+if [ -e "Skip_file.log" ]; then :
+else 
+	touch "Skip_File.log"
+fi
 
 numfile=$(ls -l . |grep -c ^d)
 let numfile=$numfile-1
@@ -18,15 +22,13 @@ for (( i = 1; i <= 7; i++)); do
 done
 col[7]=208
 # echo ${col[*]}
-tput sc
 chmod +x convert2.sh
 for f in *; do
 if [ -d "$f" ]; then
-	tput rc
-	tput ed
-        if [ "$f" = "CooConverter" ]; then
-                continue
-        fi
+	if [ "$f" = "CooConverter" ]; then
+		continue
+	fi
+	printf "\r\e[2K"
 	rcol=$((RANDOM % 8))
 	let counter=$counter+1
 	printf "\e[1m""\e[38;5;${col[$rcol]}mConverting $counter/$numfile file"
@@ -34,17 +36,22 @@ if [ -d "$f" ]; then
 		printf "s" 
 	fi
         cd "$f"
-	if [ -f *.jpg ] || [ -f *.png ]; then
-		../convert2.sh	
-		let success=$success+1
-	else 
-		printf "\nNo Image file found .. Skip Folder"
+	cekj=`find -maxdepth 1 -type f -name "*.jpg" -printf x | wc -c`
+	cekp=`find -maxdepth 1 -type f -name "*.png" -printf x | wc -c`
+	if [ $cekp -eq 0 ]&&[ $cekj -eq 0 ]; then
+		echo "$f" >> "../Skip_File.log"
+	else
+		../convert2.sh
+		if [ $? -eq 0 ] ; then
+			let success=$success+1
+		fi
 	fi
+
         cd ..
 	printf "\e[0m"
 fi
 done
+printf "\r\e[2K"
 IFS=$old_ifs
-
 mv *.pdf "CooConverter"
 bash combine.sh $success $numfile
