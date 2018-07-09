@@ -18,12 +18,12 @@ Kết quả:
 
 Screenshots:
 1. Sau khi download về:
-  ![ alt text ]()https://imgur.com/a/vwGRKKe
+  ![ alt text ](https://imgur.com/a/vwGRKKe)
 2. Đưa các folder ảnh về cùng 1 thư mục:
-  ![ alt text ]()https://imgur.com/a/YRpjE1K
+  ![ alt text ](https://imgur.com/a/YRpjE1K)
   (build_rotate và rain là các folder chứa các file ảnh)
 3. mở terminal trong thư mục và chạy lệnh $ bash main.sh
-  ![ alt text ]()https://imgur.com/a/cJzbZfS
-  ![ alt text ]()https://imgur.com/a/mkcA8PB
+  ![ alt text ](https://imgur.com/a/cJzbZfS)
+  ![ alt text ](https://imgur.com/a/mkcA8PB)
 4. kết quả: ta có các file pdf trong thư mục CooConverter
-  ![ alt text ]()https://imgur.com/a/0vCQ20g
+  ![ alt text ](https://imgur.com/a/0vCQ20g)
