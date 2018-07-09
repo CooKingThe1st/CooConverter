@@ -22,7 +22,7 @@ for (( i = 1; i <= 7; i++)); do
 done
 col[7]=208
 # echo ${col[*]}
-chmod +x convert2.sh
+chmod +x convert.sh
 for f in *; do
 if [ -d "$f" ]; then
 	if [ "$f" = "CooConverter" ]; then
@@ -41,9 +41,11 @@ if [ -d "$f" ]; then
 	if [ $cekp -eq 0 ]&&[ $cekj -eq 0 ]; then
 		echo "$f" >> "../Skip_File.log"
 	else
-		../convert2.sh
+		../convert.sh
 		if [ $? -eq 0 ] ; then
 			let success=$success+1
+		else 
+			echo "$f" >> "../Skip_File.log"
 		fi
 	fi
 
