@@ -1,9 +1,12 @@
 #!/bin/bash
+curfile=$1
+allfile=$2
+	# echo $curfile $allfile
 function printpercent {
 	 # printf "\r\e[2K"
 	 tput rc
 	 tput ed
-         percent=$((($1*100)/($2+1)))
+         percent=$(((($1+$curfile)*100)/($2+$allfile+1)))
          noob=[$percent%%]
          printf " $noob"
 }
