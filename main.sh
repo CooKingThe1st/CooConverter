@@ -35,13 +35,19 @@ if [ -d "$f" ]; then
 	if [ $numfile -gt 1 ]; then 
 		printf "s" 
 	fi
-        cd "$f"
-	cekj=`find -maxdepth 1 -type f -name "*.jpg" -printf x | wc -c`
-	cekp=`find -maxdepth 1 -type f -name "*.png" -printf x | wc -c`
+	    cd "$f"
+	cekj=`find -type f -name "*.jpg" -printf x | wc -c`
+	cekp=`find -type f -name "*.png" -printf x | wc -c`
 	if [ $cekp -eq 0 ]&&[ $cekj -eq 0 ]; then
 		echo "$f" >> "../Skip_File.log"
 	else
-		../convert.sh
+		ctj=`find -maxdepth 1 -type f -name "*.jpg" -printf x | wc -c`
+		ctp=`find -maxdepth 1 -type f -name "*.png" -printf x | wc -c`
+		if [ $ctp -eq 0 ]&&[ $ctj -eq 0 ]; then
+			bash ../convert_series.sh $(($cekj + $cekp))
+		else
+			bash ../convert.sh 0 0
+		fi
 		if [ $? -eq 0 ] ; then
 			let success=$success+1
 		else 
@@ -55,5 +61,5 @@ fi
 done
 printf "\r\e[2K"
 IFS=$old_ifs
-mv *.pdf "CooConverter"
-bash combine.sh $success $numfile
+mv *.pdf "CooConverter" 2> /dev/null
+bash effect.sh $success $numfile
