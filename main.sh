@@ -39,7 +39,17 @@ if [ -d "$f" ]; then
 	cekj=`find -type f -name "*.jpg" -printf x | wc -c`
 	cekp=`find -type f -name "*.png" -printf x | wc -c`
 	if [ $cekp -eq 0 ]&&[ $cekj -eq 0 ]; then
-		echo "$f" >> "../Skip_File.log"
+		cekpdf=`find -type f -name "*.pdf" -printf x | wc -c`
+		if [ $cekpdf -eq 0 ]; then
+			echo "$f" >> "../Skip_File.log"
+		else
+			bash ../convert_pdf.sh
+			if [ $? -eq 0 ] ; then
+			let success=$success+1
+			else 
+				echo "$f" >> "../Skip_File.log"
+			fi
+		fi
 	else
 		ctj=`find -maxdepth 1 -type f -name "*.jpg" -printf x | wc -c`
 		ctp=`find -maxdepth 1 -type f -name "*.png" -printf x | wc -c`
