@@ -1,0 +1,10 @@
+now can convert series
+notice that the folder you want to convert must follow this rules:
+1. contains ONLY the images you want to convert
+2. or contains ONLY the folder which is a chapter of the big one
+for instance, let say, we have 2 folders ONESHOT and SERIES, then
+ONESHOT only contains file .jpg or .png
+SERIES only contains folders part01 part02, which follow the concept of ONESHOT
+part01 and part02 is just a name, you can name whaterver you want, but their lexicographic order should be the same as your order
+i have also provide an extra small tool uunzipfile.sh
+it can extract all the zips in the folder which contains unzipfile.sh
