@@ -30,7 +30,7 @@ do
 	if [ $counter -eq 20 ] ; then
 		printpercent $realc $numfile
 		counter=0
-		convert=$convert" $npart.pdf "
+		convert=$convert" +compress $npart.pdf "
 		eval $convert
 		convert="convert "
 		let npart=$npart+1
@@ -39,7 +39,7 @@ do
 		if [ $counter -ne 0 ] ; then
 			printpercent $realc $numfile
 		        counter=0
-	        	convert=$convert" $npart.pdf "
+	        	convert=$convert" +compress $npart.pdf "
 	        	eval $convert
 		        let npart=$npart+1
 		fi
